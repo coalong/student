@@ -1,15 +1,18 @@
 package com.academy.edu.springboot.student.account;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @RequiredArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Account {
-    private final String number;
-    private final Integer balance;
+    @Id
+    private String number;
+    private Integer balance;
 }
