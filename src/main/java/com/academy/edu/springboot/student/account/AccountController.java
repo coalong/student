@@ -28,7 +28,7 @@ public class AccountController {
         return service.createAccount(account);
     }
 
-    @DeleteMapping("/accoubt/{number}")
+    @DeleteMapping("/account/{number}")
     public String deleteAccount(@PathVariable String number) {
         service.deleteAccount(number);
         return "{\"result\":\"ok\"}";
