@@ -1,4 +1,4 @@
-package com.academy.edu.springboot.student.student;
+package com.academy.edu.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

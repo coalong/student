@@ -1,4 +1,4 @@
-package com.academy.edu.springboot.student.student.account;
+package com.academy.edu.springboot.account;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

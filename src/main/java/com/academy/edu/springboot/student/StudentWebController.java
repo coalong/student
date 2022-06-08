@@ -1,6 +1,6 @@
-package com.academy.edu.springboot.student.student;
+package com.academy.edu.springboot.student;
 
-import com.academy.edu.springboot.student.student.config.StudentProperties;
+import com.academy.edu.springboot.config.StudentProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

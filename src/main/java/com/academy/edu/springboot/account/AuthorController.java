@@ -1,7 +1,7 @@
-package com.academy.edu.springboot.student.student.account;
+package com.academy.edu.springboot.account;
 
 
-import com.academy.edu.springboot.student.student.config.AuthorProperties;
+import com.academy.edu.springboot.config.AuthorProperties;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;

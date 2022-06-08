@@ -1,4 +1,4 @@
-package com.academy.edu.springboot.student.student;
+package com.academy.edu.springboot.student;
 
 
 import lombok.*;

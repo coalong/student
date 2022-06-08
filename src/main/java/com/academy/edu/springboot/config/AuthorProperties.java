@@ -1,4 +1,4 @@
-package com.academy.edu.springboot.student.student.config;
+package com.academy.edu.springboot.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
