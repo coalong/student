@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+<!-- MEMO 	spring-boot-starter은 BOM(자재목록), 스프링 관련 버전 명시 안해줘도 된다.    -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
