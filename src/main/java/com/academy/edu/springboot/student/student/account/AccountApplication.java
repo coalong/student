@@ -1,16 +1,17 @@
-package com.academy.edu.springboot.student.student;
+package com.academy.edu.springboot.student.student.account;
 
+import com.academy.edu.springboot.student.student.config.AuthorProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
-@EnableConfigurationProperties(value = StudentApplication.class)
+@EnableConfigurationProperties(value = AuthorProperties.class)
 @ConfigurationPropertiesScan
-public class StudentApplication {
+public class AccountApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StudentApplication.class, args);
+        SpringApplication.run(AccountApplication.class, args);
     }
     // arg 빼면 인자를 전달받을 수 없다.
 }

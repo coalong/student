@@ -1,4 +1,4 @@
-package com.academy.edu.springboot.student.account;
+package com.academy.edu.springboot.student.student.account;
 
 
 import java.util.List;

@@ -1,0 +1,6 @@
+# FIXME : Externalized Configuration example 2가지 방법
+# YAML (application.yaml)
+
+nhn:
+  student:
+name: zbum
