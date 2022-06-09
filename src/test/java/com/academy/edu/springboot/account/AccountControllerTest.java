@@ -4,7 +4,6 @@ import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,7 +29,7 @@ class AccountControllerTest {
 
     @Test
     @Order(1)
-    void testGetAccount() throws Exception{
+    void testGetAccount() throws Exception {
         given(accountRepository.findById("123"))
                 .willReturn(Optional.of(new Account("123", 500)));
         this.mvc.perform(get("/account/{number}"))
@@ -39,19 +38,19 @@ class AccountControllerTest {
 
     @Test
     @Order(2)
-    void testGetAccounts() throws Exception{
+    void testGetAccounts() throws Exception {
         this.mvc.perform(get("/accounts"))
     }
 
     @Test
     @Order(3)
-    void testCreateAccount() throws Exception{
+    void testCreateAccount() throws Exception {
         this.mvc.perform(post("/account"))
     }
 
     @Test
     @Order(4)
-    void testDeleteAccount() throws Exception{
+    void testDeleteAccount() throws Exception {
         this.mvc.perform(delete("/account/{id}", "123"))
 
     }
