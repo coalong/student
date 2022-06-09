@@ -35,4 +35,6 @@ public class NhnStudentService implements StudentService {
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
+
+
 }
