@@ -9,10 +9,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 
@@ -33,7 +35,8 @@ class AccountControllerTest {
         given(accountRepository.findById("123"))
                 .willReturn(Optional.of(new Account("123", 500)));
         this.mvc.perform(get("/account/{number}"))
-                .andExpect(status())
+                .andExpect(status().isOk())
+                .andExpect()
     }
 
     @Test
