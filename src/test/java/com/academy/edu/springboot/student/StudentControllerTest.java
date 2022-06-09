@@ -8,14 +8,15 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import java.util.List;
+
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -27,18 +28,25 @@ class StudentControllerTest {
     @Autowired
     private MockMvc mvc;
 
+    @MockBean
+    private StudentRepository studentRepository;
+
     @Test
     @Order(1)
-    void testGetStudents() throws Exception{
+    void testGetStudents() throws Exception {
+        //Mock 레퍼지토리에서 가짜 데이터 생성
+        given(studentRepository.findAll())
+                .willReturn(List.of(new Student(100L, "ayoung", 100)));
+
         this.mvc.perform(get("/students"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].name", equalTo("manty")));
+                .andExpect(jsonPath("$[0].name", equalTo("ayoung")));
     }
 
     @Test
     @Order(2)
-    void testGetStudent() throws Exception{
+    void testGetStudent() throws Exception {
         this.mvc.perform(get("/student/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -48,14 +56,14 @@ class StudentControllerTest {
 
     @Test
     @Order(3)
-    void testCreateStudent() throws Exception{
+    void testCreateStudent() throws Exception {
         Student young = new Student(5L, "mini", 100);
         String requestBody = new ObjectMapper().writeValueAsString(young);
         this.mvc.perform(
-                post("/student")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody)
-        )
+                    post("/student")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(requestBody)
+            )
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", equalTo(5)));
@@ -63,7 +71,7 @@ class StudentControllerTest {
 
     @Test
     @Order(4)
-    void testDeleteStudent() throws Exception{
+    void testDeleteStudent() throws Exception {
         this.mvc.perform(delete("/students/{id}"))
                 .andExpect(status().isOk());
     }
