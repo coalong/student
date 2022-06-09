@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -36,7 +37,8 @@ class AccountControllerTest {
                 .willReturn(Optional.of(new Account("123", 500)));
         this.mvc.perform(get("/account/{number}"))
                 .andExpect(status().isOk())
-                .andExpect()
+                .andExpect(jsonPath("$.number", equalTo("123")))
+                .andExpect(jsonPath("$.balance", equalTo(500)));
     }
 
     @Test
