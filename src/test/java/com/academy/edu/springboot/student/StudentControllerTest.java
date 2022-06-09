@@ -10,12 +10,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -29,7 +27,7 @@ class StudentControllerTest {
 
     @Test
     @Order(1)
-    void testGetStudents() throws Exception{
+    void testGetStudents() throws Exception {
         this.mvc.perform(get("/students"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -38,7 +36,7 @@ class StudentControllerTest {
 
     @Test
     @Order(2)
-    void testGetStudent() throws Exception{
+    void testGetStudent() throws Exception {
         this.mvc.perform(get("/student/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -48,14 +46,14 @@ class StudentControllerTest {
 
     @Test
     @Order(3)
-    void testCreateStudent() throws Exception{
+    void testCreateStudent() throws Exception {
         Student young = new Student(5L, "mini", 100);
         String requestBody = new ObjectMapper().writeValueAsString(young);
         this.mvc.perform(
-                post("/student")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody)
-        )
+                    post("/student")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(requestBody)
+            )
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id", equalTo(5)));
@@ -63,9 +61,10 @@ class StudentControllerTest {
 
     @Test
     @Order(4)
-    void testDeleteStudent() throws Exception{
-        this.mvc.perform(delete("/students/{id}"))
-                .andExpect(status().isOk());
+    void testDeleteStudent() throws Exception {
+        this.mvc.perform(delete("/students/{id}", 4L))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
     }
 }
 
