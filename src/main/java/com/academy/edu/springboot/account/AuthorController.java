@@ -16,7 +16,7 @@ public class AuthorController {
     private final AuthorProperties authorProperties;
 
     @GetMapping("/system/author")
-    public SystemInfo getAuthor(Model model) {
+    public SystemInfo getAuthor() {
         return new SystemInfo(authorProperties.getAuthor());
     }
 
